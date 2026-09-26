@@ -10,7 +10,6 @@ def build(source:dict,persona:dict,intent:str,channel:str)->dict:
     claims=[c for c in source['claims'] if c.get('source_id') and c.get('text')]
     if len(claims)!=len(source['claims']):raise ValueError('UNSOURCED_CLAIM')
     body=f"For {persona['audience']}: {source['name']} — "+' '.join(c['text'] for c in claims)
-    if channel=='x':body=body[:280]
     checks={'supported':all(c['source_id'] in source.get('sources',{}) for c in claims),'length_ok':len(body)<=280 if channel=='x' else len(body)<=2000,'human_review':False}
     return {'kind':source['kind'],'persona':persona['audience'],'intent':intent,'channel':channel,'draft':body,'citations':[c['source_id'] for c in claims],'checks':checks,'state':'HUMAN_REVIEW' if all([checks['supported'],checks['length_ok']]) else 'QA_FAILED','synthetic_unverified':True}
 def approve(item:dict,reviewer:str)->dict:

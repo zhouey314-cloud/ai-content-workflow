@@ -1,0 +1,17 @@
+{
+  "kind": "product",
+  "persona": "fictional operations team",
+  "intent": "explain sample feature",
+  "channel": "web",
+  "draft": "For fictional operations team: Sample Planner \u2014 It organizes sample tasks into a daily view.",
+  "citations": [
+    "spec-1"
+  ],
+  "checks": {
+    "supported": true,
+    "length_ok": true,
+    "human_review": false
+  },
+  "state": "HUMAN_REVIEW",
+  "synthetic_unverified": true
+}
